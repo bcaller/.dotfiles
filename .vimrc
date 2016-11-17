@@ -118,6 +118,8 @@ set foldlevel=1
 inoremap jj <ESC>
 inoremap jxx <ESC>:x<CR>
 inoremap jww <ESC>:w<CR>
+inoremap j4j <ESC>$
+inoremap <C-Enter> <ESC>
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
 

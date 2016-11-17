@@ -1,0 +1,82 @@
+[user]
+    # You obviously want to edit this section
+    email = ben.caller@smarkets.com
+    name = Ben Caller
+[alias]
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    st = status
+
+    ci = commit
+    cia = commit --all
+    ciaa = commit --all --amend
+    ciam = commit --amend
+	cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
+
+    # shows diff next to commits in log
+    lp = log -p
+    br = branch
+    # shows all branches
+    bra = branch -a
+    # delete branch from local and remote repositories
+    rmbr = !sh -c 'git branch -D $1 && git push origin :$1' -
+    # Prints "graphical", compact branch history
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
+    # Prints "graphical", compact all-branches history
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    # Prints "graphical", not-that-compact history of current branch
+    ll = log --graph --format=medium
+    lme = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --author='Ben Caller' --first-parent master
+    ds = diff --staged
+    co = checkout
+    cm = "!git checkout master && git pull"
+    su = submodule update
+    sui = submodule update --init
+
+    pom = push origin master
+    pbr = "!git push -u origin $(git branch-name)"
+    pff = push -f
+    # Push local branch to remote master
+    pbm = "!git push origin $(git branch-name):master"
+
+    what = show
+
+    # Borrowed from http://stackoverflow.com/questions/9651898/is-there-a-git-sed-or-equivalent/9652183#9652183
+    sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
+
+[log]
+    date = iso
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[push]
+    default = simple
+[core]
+    # LF line ends always and everywhere
+    autocrlf = input
+    editor = vim
+    excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[apply]
+    whitespace = nowarn
+[branch]
+    autosetuprebase = always
+[rerere]
+    # very useful (and dangerous as well) - remembers conflict resolutions
+    # so when you have similar conflict in the future it solves it for you
+    enabled = 0
+[gui]
+	warndetachedcommit = true
+	pruneduringfetch = true
+[help]
+    autocorrect = 50
+[merge]
+    tool = meld
+[pager]
+    log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+
