@@ -1,7 +1,6 @@
 [user]
-    # You obviously want to edit this section
-    email = ben.caller@smarkets.com
-    name = Ben Caller
+    email = bcaller@users.noreply.github.com
+    name = bcaller
 [alias]
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     st = status
@@ -10,7 +9,7 @@
     cia = commit --all
     ciaa = commit --all --amend
     ciam = commit --amend
-	cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
+    cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
 
     # shows diff next to commits in log
     lp = log -p
@@ -59,7 +58,7 @@
     autocrlf = input
     editor = vim
     excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [apply]
     whitespace = nowarn
 [branch]
@@ -69,14 +68,14 @@
     # so when you have similar conflict in the future it solves it for you
     enabled = 0
 [gui]
-	warndetachedcommit = true
-	pruneduringfetch = true
+    warndetachedcommit = true
+    pruneduringfetch = true
 [help]
     autocorrect = 50
 [merge]
     tool = meld
 [pager]
     log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-	show = diff-so-fancy | less --tabs=1,5 -RFX
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
+    show = diff-so-fancy | less --tabs=1,5 -RFX
+    diff = diff-so-fancy | less --tabs=1,5 -RFX
 
