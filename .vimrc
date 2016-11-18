@@ -20,6 +20,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'luochen1990/rainbow'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'easymotion/vim-easymotion'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
@@ -124,6 +125,8 @@ inoremap j4j <ESC>$
 inoremap <C-Enter> <ESC>
 nnoremap s :
 cnoremap <space><space> <cr>
+map <space> <Plug>(easymotion-prefix)
+nmap <space>/ <Plug>(easymotion-s2)
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
 nmap <Leader>gutt :GitGutterToggle<CR>
