@@ -17,8 +17,10 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'gcmt/wildfire.vim'
 Bundle 'tpope/vim-commentary'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'luochen1990/rainbow'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'easymotion/vim-easymotion'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
@@ -105,21 +107,39 @@ set relativenumber                      " Line numbers on
 highlight LineNr ctermfg=grey
 set showmatch                   " Show matching brackets/parenthesis
 set scrolljump=5                " Lines to scroll when cursor leaves screen
-    set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
-    set list
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set foldenable                  " Auto fold code
+set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 highlight clear SignColumn      " SignColumn should match background
 set clipboard=unnamedplus
 let g:pymode_options_max_line_length = 110
+let g:pymode_lint_on_write = 1
 set foldlevel=1
 "highlight Folded guibg=#9c86a8 guifg=blue
 inoremap jj <ESC>
 inoremap jxx <ESC>:x<CR>
 inoremap jww <ESC>:w<CR>
-inoremap j4j <ESC>$
+inoremap j4j <ESC>A
 inoremap <C-Enter> <ESC>
+nnoremap ( A)<ESC>I(<ESC>I
+nnoremap ) ea)<ESC>I(<ESC>I
+nnoremap s :
+nnoremap <TAB> I<TAB><ESC>+
+nnoremap <S-TAB> I<BS><ESC>+
+nnoremap <C-l> a<CR><ESC>
+cnoremap $y <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>``
+cnoremap <space><space> <cr>
+map <space> <Plug>(easymotion-prefix)
+nmap <space>/ <Plug>(easymotion-s2)
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
+nmap <Leader>gutt :GitGutterToggle<CR>
+nnoremap <esc>^[ <esc>^[
+noremap <silent><esc> <esc>:noh<CR><esc>
+nmap <Leader>nn :noh<CR>
+set diffopt=vertical
 
