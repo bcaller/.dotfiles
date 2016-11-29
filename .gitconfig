@@ -1,7 +1,6 @@
 [user]
-    # You obviously want to edit this section
-    email = bcaller@gmail.com
-    name = Ben Caller
+    email = bcaller@users.noreply.github.com
+    name = bcaller
 [alias]
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     st = status
