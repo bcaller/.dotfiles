@@ -35,7 +35,7 @@
     pbr = "!git push -u origin $(git branch-name)"
     pff = push -f
     # Push local branch to remote master
-    pbm = "!git push origin $(git branch-name):master"
+    pbmaster = "!git push origin $(git branch-name):master"
 
     what = show
 

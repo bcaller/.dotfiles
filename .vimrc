@@ -122,14 +122,25 @@ set foldlevel=1
 inoremap jj <ESC>
 inoremap jxx <ESC>:x<CR>
 inoremap jww <ESC>:w<CR>
-inoremap j4j <ESC>$
+inoremap j4j <ESC>A
 inoremap <C-Enter> <ESC>
+nnoremap ( A)<ESC>I(<ESC>I
+nnoremap ) ea)<ESC>I(<ESC>I
 nnoremap s :
+nnoremap <TAB> I<TAB><ESC>+
+nnoremap <S-TAB> I<BS><ESC>+
+nnoremap <C-l> a<CR><ESC>
+cnoremap $y <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>``
 cnoremap <space><space> <cr>
 map <space> <Plug>(easymotion-prefix)
 nmap <space>/ <Plug>(easymotion-s2)
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
 nmap <Leader>gutt :GitGutterToggle<CR>
+nnoremap <esc>^[ <esc>^[
+noremap <silent><esc> <esc>:noh<CR><esc>
+nmap <Leader>nn :noh<CR>
 set diffopt=vertical
 
