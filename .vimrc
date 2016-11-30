@@ -1,13 +1,14 @@
-" An example for a vimrc file.
+" bcaller's vimrc
 "
 " Many settings from
 " https://github.com/spf13/spf13-vim/blob/1ce5f23997f6dd82235c6936c5c47b3f1d1b4e50/.vimrc.bundles
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'VundleVim/Vundle.vim'
+"Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
