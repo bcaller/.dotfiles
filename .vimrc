@@ -122,12 +122,21 @@ let g:pymode_lint_on_write = 1
 let g:pymode_rope = 0
 set foldlevel=1
 "highlight Folded guibg=#9c86a8 guifg=blue
+"quit insert mode
 inoremap jj <ESC>
+":x!
 inoremap sxx <ESC>:x<CR>
-inoremap <C-l> <ESC>?\<<C-r><C-w>\w<CR>yW<C-o>ciW<C-r>0
+inoremap jxx <ESC>:x<CR>
+"search backwards for prefix and autocomplete word
+inoremap <C-l> <ESC>?\<<C-r><C-w>\w<CR>yw<C-o>ciw<C-r>0
+"fill word from line above
 inoremap <C-k> <space><ESC>kyEjPla
+":w!
 inoremap sww <ESC>:w<CR>
+inoremap jww <ESC>:w<CR>
+"quit insert and append to end of line
 inoremap s4s <ESC>A
+"doesn't work
 inoremap <C-Enter> <ESC>
 nnoremap s :
 nnoremap sww :w<CR>
@@ -136,16 +145,20 @@ nnoremap sqq :q<CR>
 nnoremap <TAB> I<TAB><ESC>+
 nnoremap <S-TAB> I<BS><ESC>+
 nnoremap <C-l> a<CR><ESC>
+"when searching, copy line with first match and paste here
 cnoremap $y <CR>:t''<CR>
+"when searching, move line with first match here
 cnoremap $m <CR>:m''<CR>
 cnoremap $d <CR>:d<CR>``
 cnoremap <space><space> <cr>
+"press space for easy motion
 map <space> <Plug>(easymotion-prefix)
 nmap <space>/ <Plug>(easymotion-s2)
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
 nmap <Leader>gutt :GitGutterToggle<CR>
 nnoremap <esc>^[ <esc>^[
+"unhilight search matches
 noremap <silent><esc> <esc>:noh<CR><esc>
 nmap <Leader>nn :noh<CR>
 set diffopt=vertical
