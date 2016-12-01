@@ -24,7 +24,7 @@
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     # Prints "graphical", not-that-compact history of current branch
     ll = log --graph --format=medium
-    lme = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --author='Ben Caller' --first-parent master
+    lme = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --author="caller" --first-parent master
     ds = diff --staged
     co = checkout
     cm = "!git checkout master && git pull"

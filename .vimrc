@@ -125,7 +125,7 @@ set foldlevel=1
 inoremap jj <ESC>
 inoremap sxx <ESC>:x<CR>
 inoremap <C-l> <ESC>?\<<C-r><C-w>\w<CR>yW<C-o>ciW<C-r>0
-inoremap <C-m> <space><ESC>kyEjPla
+inoremap <C-k> <space><ESC>kyEjPla
 inoremap sww <ESC>:w<CR>
 inoremap s4s <ESC>A
 inoremap <C-Enter> <ESC>
