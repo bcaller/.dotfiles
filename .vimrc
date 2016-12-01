@@ -30,7 +30,6 @@ map <F2> :NERDTreeToggle<CR>
 "Plugins
 filetype plugin indent on
 
-" execute pathogen#infect()
 syntax on
 set history=1000
 
@@ -71,6 +70,9 @@ if has("autocmd")
 	autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
         autocmd FileType python match Excess /\%110v.*/
         autocmd FileType python set nowrap
+	autocmd FileType python nnoremap ( A)<ESC>I(<ESC>I
+	autocmd FileType python nnoremap ( A)<ESC>I(<ESC>I
+	autocmd FileType python nnoremap ) ea)<ESC>I(<ESC>I
   augroup END
 
 else
@@ -117,16 +119,20 @@ highlight clear SignColumn      " SignColumn should match background
 set clipboard=unnamedplus
 let g:pymode_options_max_line_length = 110
 let g:pymode_lint_on_write = 1
+let g:pymode_rope = 0
 set foldlevel=1
 "highlight Folded guibg=#9c86a8 guifg=blue
 inoremap jj <ESC>
-inoremap jxx <ESC>:x<CR>
-inoremap jww <ESC>:w<CR>
-inoremap j4j <ESC>A
+inoremap sxx <ESC>:x<CR>
+inoremap <C-l> <ESC>?\<<C-r><C-w>\w<CR>yW<C-o>ciW<C-r>0
+inoremap <C-m> <space><ESC>kyEjPla
+inoremap sww <ESC>:w<CR>
+inoremap s4s <ESC>A
 inoremap <C-Enter> <ESC>
-nnoremap ( A)<ESC>I(<ESC>I
-nnoremap ) ea)<ESC>I(<ESC>I
 nnoremap s :
+nnoremap sww :w<CR>
+nnoremap sxx :x<CR>
+nnoremap sqq :q<CR>
 nnoremap <TAB> I<TAB><ESC>+
 nnoremap <S-TAB> I<BS><ESC>+
 nnoremap <C-l> a<CR><ESC>
