@@ -7,8 +7,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 Bundle 'VundleVim/Vundle.vim'
-"Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+"powerline-status is bad python version
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
@@ -136,8 +137,6 @@ inoremap sww <ESC>:w<CR>
 inoremap jww <ESC>:w<CR>
 "quit insert and append to end of line
 inoremap s4s <ESC>A
-"doesn't work
-inoremap <C-Enter> <ESC>
 nnoremap s :
 nnoremap sww :w<CR>
 nnoremap sxx :x<CR>
@@ -151,6 +150,7 @@ cnoremap $y <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
 cnoremap $d <CR>:d<CR>``
 cnoremap <space><space> <cr>
+nnoremap !! :<up><home><right>!
 "press space for easy motion
 map <space> <Plug>(easymotion-prefix)
 nmap <space>/ <Plug>(easymotion-s2)
@@ -162,4 +162,6 @@ nnoremap <esc>^[ <esc>^[
 noremap <silent><esc> <esc>:noh<CR><esc>
 nmap <Leader>nn :noh<CR>
 set diffopt=vertical
+set ttymouse=sgr
+set mouse=nicr
 
