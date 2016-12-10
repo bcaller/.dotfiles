@@ -117,7 +117,7 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 highlight clear SignColumn      " SignColumn should match background
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 let g:pymode_options_max_line_length = 110
 let g:pymode_lint_on_write = 1
 let g:pymode_rope = 0
