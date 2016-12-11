@@ -7,7 +7,7 @@ export ZSH=/home/ben/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="terminalparty"
+# ZSH_THEME="terminalparty"
 #ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -54,7 +54,7 @@ HYPHEN_INSENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(command-not-found pip python vagrant vi-mode web-search wd colorize fasd)
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 source ~/.bash_aliases
 
 # Command line head / tail shortcuts
@@ -66,3 +66,26 @@ alias -g LL="2>&1 | less"
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+alias v='f -t -e vim -b viminfo'
+alias catc='colorize'
+alias c='fasd_cd -d'
+
+alias -g PI='3.14159265359'
+
+source ~/antigen.zsh
+antigen use oh-my-zsh
+antigen bundle command-not-found
+antigen bundle pip
+antigen bundle python
+antigen bundle vagrant
+antigen bundle vi-mode
+antigen bundle web-search
+antigen bundle wd
+antigen bundle colorize
+antigen bundle fasd
+antigen bundle virtualenv
+antigen bundle arzzen/calc.plugin.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme bcaller/.zsh-theme theme
+antigen apply
