@@ -23,6 +23,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'luochen1990/rainbow'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'easymotion/vim-easymotion'
+Bundle 'ConradIrwin/vim-bracketed-paste'
+Bundle 'tmux-plugins/vim-tmux'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'

@@ -89,3 +89,9 @@ antigen bundle arzzen/calc.plugin.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme bcaller/.zsh-theme theme
 antigen apply
+
+export TERM=rxvt-unicode
+
+bindkey "^[[A" up-line-or-search
+
+fortune | cowsay -pn
