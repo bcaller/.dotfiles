@@ -166,4 +166,4 @@ nmap <Leader>nn :noh<CR>
 set diffopt=vertical
 set ttymouse=sgr
 set mouse=nicr
-
+set tildeop

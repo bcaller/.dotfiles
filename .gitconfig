@@ -19,8 +19,8 @@
     # delete branch from local and remote repositories
     rmbr = !sh -c 'git branch -D $1 && git push origin :$1' -
     # Prints "graphical", compact branch history
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
-    long = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd)%n%C(bold blue)<%an>%Creset%n%b' --abbrev-commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%x %H:%M'
+    long = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset %Cgreen(%cd)%n%C(bold blue)  <%an>%Creset%n%w(0,4,4)%b' --abbrev-commit --stat --date=format:'%a %x %H:%M'
     # Prints "graphical", compact all-branches history
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     # Prints "graphical", not-that-compact history of current branch
@@ -39,6 +39,7 @@
     pbmaster = "!git push origin $(git branch-name):master"
 
     what = show
+    which = show --summary --pretty="" --stat
 
     # Borrowed from http://stackoverflow.com/questions/9651898/is-there-a-git-sed-or-equivalent/9652183#9652183
     sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e

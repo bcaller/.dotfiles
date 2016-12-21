@@ -95,3 +95,9 @@ export TERM=rxvt-unicode
 bindkey "^[[A" up-line-or-search
 
 fortune | cowsay -pn
+
+# ignore some files during completion
+zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
+# but not for these programs
+zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
+zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
