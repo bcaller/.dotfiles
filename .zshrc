@@ -84,7 +84,7 @@ antigen bundle web-search
 antigen bundle wd
 antigen bundle colorize
 antigen bundle fasd
-antigen bundle virtualenv
+antigen bundle tonyseek/oh-my-zsh-virtualenv-prompt
 antigen bundle arzzen/calc.plugin.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme bcaller/.zsh-theme theme

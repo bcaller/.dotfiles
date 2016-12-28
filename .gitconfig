@@ -8,6 +8,7 @@
     ci = commit
     cia = commit --all
     ciaa = commit --all --amend
+    ciaano = commit --all --amend --no-verify --no-edit
     ciam = commit --amend
     cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
 
@@ -19,7 +20,7 @@
     # delete branch from local and remote repositories
     rmbr = !sh -c 'git branch -D $1 && git push origin :$1' -
     # Prints "graphical", compact branch history
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%x %H:%M'
+    lg = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     long = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset %Cgreen(%cd)%n%C(bold blue)  <%an>%Creset%n%w(0,4,4)%b' --abbrev-commit --stat --date=format:'%a %x %H:%M'
     # Prints "graphical", compact all-branches history
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --all
