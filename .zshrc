@@ -55,8 +55,6 @@ HYPHEN_INSENSITIVE="true"
 plugins=(command-not-found pip python vagrant vi-mode web-search wd colorize fasd)
 
 #source $ZSH/oh-my-zsh.sh
-source ~/.bash_aliases
-
 # Command line head / tail shortcuts
 alias -g H='| head'
 alias -g T='| tail'
@@ -67,7 +65,6 @@ alias -g LL="2>&1 | less"
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-alias v='f -t -e vim -b viminfo'
 alias catc='colorize'
 alias c='fasd_cd -d'
 
@@ -101,3 +98,5 @@ zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 # but not for these programs
 zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
 zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
+
+source ~/.bash_aliases
