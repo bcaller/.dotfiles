@@ -18,7 +18,7 @@
     # shows all branches
     bra = branch -a
     # delete branch from local and remote repositories
-    rmbr = !sh -c '(git branch -D $1 || false) || git push origin :$1' -
+    rmbr = !sh -c '(git branch -D $1 && false) || git push origin :$1 --no-verify' -
     # Prints "graphical", compact branch history
     lg = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     long = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset%n%C(bold blue)  <%an> %Creset%Cgreen(%cd)%Creset%n%w(0,4,4)%b' --abbrev-commit --stat --date=format:'%a %x %H:%M'
