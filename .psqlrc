@@ -1,0 +1,10 @@
+-- prevent noisy psqlrc loading
+\set QUIET yes
+
+\set ON_ERROR_ROLLBACK interactive
+\set COMP_KEYWORD_CASE upper
+\setenv LESS '-iMSx4 -F'
+\pset null '␀'
+\set HISTCONTROL ignoredups
+
+\unset QUIET

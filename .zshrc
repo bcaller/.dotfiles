@@ -89,7 +89,7 @@ antigen apply
 
 export TERM=rxvt-unicode
 
-bindkey "^[[A" up-line-or-search
+bindkey "^[[A" up-line-or-beginning-search
 
 fortune | cowsay -pn
 
@@ -100,3 +100,9 @@ zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
 zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
 
 source ~/.bash_aliases
+
+autoload -U _crane
+compdef _crane crn
+compdef _crane crnd
+setopt complete_aliases
+fpath=(~/.zsh-functions $fpath)

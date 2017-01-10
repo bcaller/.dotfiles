@@ -19,6 +19,7 @@
     bra = branch -a
     # delete branch from local and remote repositories
     rmbr = !sh -c '(git branch -D $1 && false) || git push origin :$1 --no-verify' -
+    mvbr = !sh -c 'BRNM=$(git branch-name) && (git branch -m $1 || true) && git rmbr $BRNM && git push --set-upstream origin $1' -
     # Prints "graphical", compact branch history
     lg = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     long = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset%n%C(bold blue)  <%an> %Creset%Cgreen(%cd)%Creset%n%w(0,4,4)%b' --abbrev-commit --stat --date=format:'%a %x %H:%M'
@@ -30,19 +31,22 @@
     ln = !git --no-pager long -n
     ds = diff --staged
     co = checkout
-    cm = "!git checkout master && git pull"
-    cmr = "!BRNM=$(git branch-name)&&git cm && git co $BRNM && git rebase master"
+    cm = "!git checkout master && git fetch && git --no-pager lg ..origin/master && git pull"
+    cmr = "!BRNM=$(git branch-name)&&git stash && git cm && git co $BRNM && git rebase master && git stash pop"
     su = submodule update
     sui = submodule update --init
 
     pom = push origin master
     pbr = "!git push -u origin $(git branch-name)"
-    pff = push -f
+    pff = push -f --no-verify
+    pnn = push --no-verify
     # Push local branch to remote master
     pbmaster = "!git push origin $(git branch-name):master"
 
     what = show
     which = show --summary --pretty="" --stat
+
+    ciaanopff = "!git ciaano && git pff"
 
     # Borrowed from http://stackoverflow.com/questions/9651898/is-there-a-git-sed-or-equivalent/9652183#9652183
     sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e

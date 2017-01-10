@@ -26,6 +26,8 @@ Bundle 'easymotion/vim-easymotion'
 Bundle 'ConradIrwin/vim-bracketed-paste'
 Bundle 'tmux-plugins/vim-tmux'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'tommcdo/vim-fugitive-blame-ext'
+Bundle 'tpope/vim-abolish'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
@@ -124,7 +126,7 @@ set clipboard=unnamed,unnamedplus
 let g:pymode_options_max_line_length = 110
 let g:pymode_lint_on_write = 1
 let g:pymode_rope = 0
-set foldlevel=1
+set foldlevel=2
 "highlight Folded guibg=#9c86a8 guifg=blue
 "quit insert mode
 inoremap jj <ESC>
