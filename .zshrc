@@ -84,6 +84,7 @@ antigen bundle fasd
 antigen bundle tonyseek/oh-my-zsh-virtualenv-prompt
 antigen bundle arzzen/calc.plugin.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle bcaller/zsh-navigation-tools
 antigen theme bcaller/.zsh-theme theme
 antigen apply
 
@@ -98,6 +99,9 @@ zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
 # but not for these programs
 zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
 zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
+
+#znt
+znt_list_border=1
 
 source ~/.bash_aliases
 
