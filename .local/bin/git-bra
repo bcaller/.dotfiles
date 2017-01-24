@@ -1,0 +1,2 @@
+git fetch --prune -q
+git for-each-ref --format='%(committerdate)%09%(authorname)%09%(refname)' | sort -k5n -k2M -k3n -k4n | grep remotes | sed 's/refs\/remotes\/origin\///g' | awk -F "\t" '{ printf "\033[1;32m%-32s\033[0m \033[1;34m%-27s\033[0m %s\n", $1, $2, $3 }'
