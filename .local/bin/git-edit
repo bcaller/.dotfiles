@@ -1,0 +1,11 @@
+git tracked-clean
+COMMIT=$(git rev-parse --short $1)
+GIT_EDITOR="sed -i 's/pick $COMMIT/edit $COMMIT/'" git rebase -i $1^ 2> /dev/null
+git reset HEAD^ --hard > /dev/null
+git ci --allow-empty -m "$(git show -s --format=%B $COMMIT)" > /dev/null
+git cherry-pick -n $COMMIT > /dev/null
+echo "Commit is now empty. Previous changes from $COMMIT have been staged ready for git ciam."
+echo "git rebase --continue"
+echo
+git show -s --format=%B $COMMIT
+git st -suno
