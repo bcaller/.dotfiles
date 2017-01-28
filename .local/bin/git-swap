@@ -1,0 +1,19 @@
+# Usage: git swap old-commitish new-commitish
+set -e
+git tracked-clean
+OLD=`git rev-parse $1`
+NEW=`git rev-parse $2`
+BETWEEN=`git rev-list --reverse $OLD..$NEW^`
+AFTER=`git rev-list --reverse $NEW..HEAD`
+git reset $OLD^ --hard
+git cherry-pick $NEW > /dev/null
+for c in $BETWEEN; do
+	git cherry-pick $c > /dev/null
+done
+git cherry-pick $OLD > /dev/null
+for c in $AFTER; do
+	git cherry-pick $c > /dev/null
+done
+git --no-pager lg $OLD^..
+echo
+git --no-pager lg $OLD^

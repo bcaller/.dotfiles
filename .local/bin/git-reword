@@ -1,0 +1,8 @@
+# Usage git reword commitish
+git tracked-clean
+OTHERCOMMITS=`git rev-list --reverse $1..HEAD`
+git reset $1 --hard
+git commit --amend --no-verify
+for c in $OTHERCOMMITS; do
+	git cherry-pick $c
+done
