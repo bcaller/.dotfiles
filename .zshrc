@@ -105,6 +105,17 @@ znt_list_border=1
 
 source ~/.bash_aliases
 
+function ranger-cd {
+    tempfile="$(mktemp)"
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+}
+alias rcd="ranger-cd"
+
 autoload -U _crane
 compdef _crane crn
 compdef _crane crnd
