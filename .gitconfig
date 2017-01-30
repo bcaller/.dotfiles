@@ -42,6 +42,8 @@
     # Push local branch to remote master
     pbmaster = "!git push origin $(git branch-name):master"
 
+    rhh = reset HEAD --hard
+
     what = show
     which = show --summary --pretty="" --stat
 
