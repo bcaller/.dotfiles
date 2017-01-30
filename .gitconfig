@@ -10,6 +10,7 @@
     cia = commit --all
     ciaa = commit --all --amend
     ciaano = commit --all --amend --no-verify --no-edit
+    ciamno = commit --amend --no-verify --no-edit
     ciam = commit --amend
     cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
 
@@ -48,6 +49,7 @@
     which = show --summary --pretty="" --stat
 
     unstage = reset HEAD
+    unmodify = !sh -c 'git reset HEAD -- "$@" && git co HEAD -- "$@"'
 
     fix = "!git ciaano && git pff"
 

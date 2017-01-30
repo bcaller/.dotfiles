@@ -15,5 +15,3 @@ for c in $AFTER; do
 	git cherry-pick $c > /dev/null
 done
 git --no-pager lg $OLD^..
-echo
-git --no-pager lg $OLD^
