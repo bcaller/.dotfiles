@@ -15,7 +15,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'terryma/vim-multiple-cursors'
+" not used, conflicts with C-N Bundle 'terryma/vim-multiple-cursors'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'gcmt/wildfire.vim'
 Bundle 'tpope/vim-commentary'
@@ -166,6 +166,14 @@ nnoremap <esc>^[ <esc>^[
 "unhilight search matches
 noremap <silent><esc> <esc>:noh<CR><esc>
 nmap <Leader>nn :noh<CR>
+"open file search
+set wildignorecase
+set wildignore+=*.a,*.o
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=.DS_Store,.git,.hg,.svn
+set wildignore+=*~,*.swp,*.tmp,*.pyc,*.un,.env
+nmap <C-N> :e **/
+nmap <C-N><C-N> :e %%/**/
 set diffopt=vertical
 set ttymouse=sgr
 set mouse=nicr
