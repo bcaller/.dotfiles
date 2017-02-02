@@ -15,7 +15,7 @@
     cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
 
     # shows diff next to commits in log
-    lp = log -p
+    file = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset%n%C(bold blue)  <%an> %Creset%Cgreen(%cd)%Creset%n%w(0,4,4)%b%Creset' --abbrev-commit --date=format:'%a %x %H:%M' -p --follow
     br = branch -vv
     # delete branch from local and remote repositories
     rmbr = !sh -c '(git branch -D $1 && false) || git push origin :$1 --no-verify' -
@@ -45,8 +45,8 @@
 
     rhh = reset HEAD --hard
 
-    what = show
     which = show --summary --pretty="" --stat
+    whbr = diff --name-only master
 
     unstage = reset HEAD
     unmodify = !sh -c 'git reset HEAD -- "$@" && git co HEAD -- "$@"'

@@ -91,6 +91,8 @@ antigen apply
 export TERM=rxvt-unicode
 
 bindkey "^[[A" up-line-or-beginning-search
+bindkey "\033[1~" beginning-of-line
+bindkey "\033[4~" end-of-line
 
 fortune | cowsay -pn
 
