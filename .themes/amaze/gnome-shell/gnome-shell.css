@@ -1,0 +1,10 @@
+#panel {
+	background-color: rgba(0,0,0,0.6);
+	font-size: 0.7em;
+	height: 1.3em;
+}
+
+.app-menu-icon {
+	-st-icon-style: requested;
+	width: 1.3em;
+}
