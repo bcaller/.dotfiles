@@ -159,7 +159,7 @@ map <space> <Plug>(easymotion-prefix)
 nmap <space>/ <Plug>(easymotion-s2)
 cabbr <expr> %% expand('%:p:h')
 com! FormatJSON %!python -m json.tool
-nmap <Leader>gutt :GitGutterToggle<CR>
+nmap <Leader>gut :GitGutterToggle<CR>
 nnoremap <esc>^[ <esc>^[
 "unhilight search matches
 noremap <silent><esc> <esc>:noh<CR><esc>
