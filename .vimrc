@@ -133,8 +133,6 @@ inoremap jj <ESC>
 ":x!
 inoremap sxx <ESC>:x<CR>
 inoremap jxx <ESC>:x<CR>
-"search backwards for prefix and autocomplete word
-inoremap <C-l> <ESC>?\<<C-r><C-w>\w<CR>""yw<C-o>"_ciw<C-r>0
 "fill word from line above
 inoremap <C-k> <space><ESC>k""yEj""Pla
 ":w!
