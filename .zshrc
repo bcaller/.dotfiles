@@ -106,6 +106,7 @@ zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
 znt_list_border=1
 
 source ~/.bash_aliases
+eval "$(thefuck --alias)"
 
 function ranger-cd {
     tempfile="$(mktemp)"

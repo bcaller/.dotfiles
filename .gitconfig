@@ -14,6 +14,7 @@
     ciam = commit --amend
     cxx = "!BRNM=$(git branch-name)&&git add -p && git ciam && git cm && git co $BRNM && git rebase master"
 
+    chp = cherry-pick
     # shows diff next to commits in log
     file = log --pretty=format:'%Cred%h%Creset%C(yellow)%d %C(white ul)%s%Creset%n%C(bold blue)  <%an> %Creset%Cgreen(%cd)%Creset%n%w(0,4,4)%b%Creset' --abbrev-commit --date=format:'%a %x %H:%M' -p --follow
     br = branch -vv
@@ -47,7 +48,7 @@
     end = rebase --continue
 
     which = show --summary --pretty="" --stat
-    whbr = diff --name-only master
+    whbr = !sh -c 'git diff --name-only master..."$0"'
 
     unstage = reset HEAD
     unmodify = !sh -c 'git reset HEAD -- "$@" && git co HEAD -- "$@"'

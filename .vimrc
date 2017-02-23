@@ -31,7 +31,11 @@ Bundle 'tpope/vim-abolish'
 Bundle 'kshenoy/vim-signature'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'bkad/CamelCaseMotion'
+Bundle 'Shougo/vimproc'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 colorscheme CandyPaper
+set background=dark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
 set laststatus=2
