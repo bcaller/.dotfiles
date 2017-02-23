@@ -63,6 +63,8 @@ case "$extension" in
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
     nfo)
         try iconv -f CP437 "$path" && { dump | trim; exit 4; } || exit 2;;
+    mp3)
+        try ffprobe "$path" -show_format -pretty && { dump | trim | grep "^\(TAG\|duration\)" | sed 's/TAG://'; exit 0; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
         try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }

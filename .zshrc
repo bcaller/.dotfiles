@@ -117,6 +117,8 @@ function ranger-cd {
     rm -f -- "$tempfile"
 }
 alias rcd="ranger-cd"
+# choose a git hash with ipt and execute a command with {} replaced by the hash
+alias h{}='git --no-pager lg -25 | ipt | cut -d " " -f 1 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | xargs -I {}'
 
 autoload -U _crane
 compdef _crane crn

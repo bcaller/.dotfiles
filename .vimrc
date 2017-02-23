@@ -11,7 +11,7 @@ Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 "powerline-status is bad python version
 "set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
@@ -28,6 +28,7 @@ Bundle 'tmux-plugins/vim-tmux'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tommcdo/vim-fugitive-blame-ext'
 Bundle 'tpope/vim-abolish'
+Bundle 'kshenoy/vim-signature'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
@@ -131,6 +132,7 @@ set foldlevel=2
 "quit insert mode
 inoremap jj <ESC>
 ":x!
+nnoremap s :
 inoremap sxx <ESC>:x<CR>
 inoremap jxx <ESC>:x<CR>
 "fill word from line above
@@ -140,7 +142,6 @@ inoremap sww <ESC>:w<CR>
 inoremap jww <ESC>:w<CR>
 "quit insert and append to end of line
 inoremap s4s <ESC>A
-nnoremap s :
 nnoremap sww :w<CR>
 nnoremap sxx :x<CR>
 nnoremap sqq :q<CR>
@@ -164,6 +165,17 @@ nnoremap <esc>^[ <esc>^[
 "unhilight search matches
 noremap <silent><esc> <esc>:noh<CR><esc>
 nmap <Leader>nn :noh<CR>
+"swap adjacent words
+nnoremap <silent> gw :s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o>:noh<CR>
+" move lines up and down
+nnoremap gj :m .+1<CR>==
+nnoremap gk :m .-2<CR>==
+inoremap KK <Esc>:m .-2<CR>==gi
+inoremap JJ <Esc>:m .+1<CR>==gi
+nnoremap <C-p> o<Esc>p
+inoremap () ()<Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
 "open file search
 set wildignorecase
 set wildignore+=*.a,*.o
