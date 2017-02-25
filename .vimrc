@@ -29,6 +29,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tommcdo/vim-fugitive-blame-ext'
 Bundle 'tpope/vim-abolish'
 Bundle 'kshenoy/vim-signature'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'bkad/CamelCaseMotion'
 colorscheme CandyPaper
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 let g:pymode_python = 'python3'
@@ -184,6 +186,12 @@ set wildignore+=.DS_Store,.git,.hg,.svn
 set wildignore+=*~,*.swp,*.tmp,*.pyc,*.un,.env
 nmap <C-N> :e **/
 nmap <C-N><C-N> :e %%/**/
+" Camel Snake
+map <silent> ,w <Plug>CamelCaseMotion_w
+map <silent> ,b <Plug>CamelCaseMotion_b
+map <silent> ,e <Plug>CamelCaseMotion_e
+omap <silent> i,w <Plug>CamelCaseMotion_iw
+xmap <silent> i,w <Plug>CamelCaseMotion_iw
 set diffopt=vertical
 set ttymouse=sgr
 set mouse=nicr
