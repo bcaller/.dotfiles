@@ -65,6 +65,7 @@ endif
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
   set hlsearch
+  set t_Co=256
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -86,7 +87,14 @@ if has("autocmd")
 	autocmd FileType python nnoremap ( A)<ESC>I(<ESC>I
 	autocmd FileType python nnoremap ( A)<ESC>I(<ESC>I
 	autocmd FileType python nnoremap ) ea)<ESC>I(<ESC>I
+	autocmd FileType python nnoremap fff :let @f='<C-r><C-w>'<CR>/def <C-r>f(<CR>zt<ESC>
+	autocmd FileType haskell set shiftwidth=2
+	autocmd FileType haskell set expandtab
+	autocmd FileType htmldjango set shiftwidth=2
+	autocmd FileType htmldjango set expandtab
   augroup END
+
+  autocmd CursorHold,VimResized,FocusLost * redraw!
 
 else
 
@@ -139,18 +147,18 @@ set foldlevel=2
 inoremap jj <ESC>
 ":x!
 nnoremap s :
-inoremap sxx <ESC>:x<CR>
-inoremap jxx <ESC>:x<CR>
+inoremap sxx <ESC>:wa<CR><ESC>:xa<CR>
+inoremap jxx <ESC>:wa<CR><ESC>:xa<CR>
 "fill word from line above
 inoremap <C-k> <space><ESC>k""yEj""Pla
 ":w!
-inoremap sww <ESC>:w<CR>
-inoremap jww <ESC>:w<CR>
+inoremap sww <ESC>:w<CR><ESC>:w<CR>
+inoremap jww <ESC>:w<CR><ESC>:w<CR>
 "quit insert and append to end of line
 inoremap s4s <ESC>A
-nnoremap sww :w<CR>
-nnoremap sxx :x<CR>
-nnoremap sqq :q<CR>
+nnoremap sww :w<CR>:w<CR>
+nnoremap sxx <ESC>:wa<CR>:xa<CR>
+nnoremap sqq :qa<CR>
 nnoremap <TAB> I<TAB><ESC>+
 nnoremap <S-TAB> I<BS><ESC>+
 nnoremap <C-l> a<CR><ESC>
@@ -178,10 +186,19 @@ nnoremap gj :m .+1<CR>==
 nnoremap gk :m .-2<CR>==
 inoremap KK <Esc>:m .-2<CR>==gi
 inoremap JJ <Esc>:m .+1<CR>==gi
-nnoremap <C-p> o<Esc>p
-inoremap () ()<Left>
-inoremap {} {}<Left>
-inoremap [] []<Left>
+nnoremap !p o<Esc>p
+nnoremap // /\c
+nnoremap # *
+nnoremap * #
+" replace motion with paste
+function! ReplaceWithPaste(type)
+   let @"=@*
+   silent execute 'normal! `[v`]d"0p'
+endfunction
+nnoremap sp :set opfunc=ReplaceWithPaste<CR>g@
+" replace the.big.dog attribute with the['big'].dog index when cursor over dot after the
+nmap cai hf.xysw]lysw'
+nmap cia hf[i.<Esc>2lx:norm f<C-r>"<CR>xds]
 "open file search
 set wildignorecase
 set wildignore+=*.a,*.o
