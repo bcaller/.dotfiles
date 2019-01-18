@@ -61,6 +61,7 @@
     unstage = reset HEAD
     unmodify = !git co HEAD -- "$@" && git reset HEAD -- "$@"
     uncommit = reset @^ --mixed
+    killunstaged = checkout -- .
 
     fix = "!git ciaano && git pff"
     fixr = "!git ciaano && git cmr && git pff"

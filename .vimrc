@@ -7,7 +7,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 Bundle 'VundleVim/Vundle.vim'
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+if !has('nvim')
+	Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+endif
 "powerline-status is bad python version
 "set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 Bundle 'tpope/vim-fugitive'
@@ -19,7 +21,9 @@ Bundle 'tpope/vim-repeat'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'gcmt/wildfire.vim'
 Bundle 'tpope/vim-commentary'
-Bundle 'airblade/vim-gitgutter'
+if !has('nvim')
+	Bundle 'airblade/vim-gitgutter'
+endif
 Bundle 'luochen1990/rainbow'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'easymotion/vim-easymotion'
@@ -34,6 +38,13 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'Shougo/vimproc'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'bonnefoa/vim-capnp'
+Bundle 'gabrielelana/vim-markdown'
+Bundle 'rust-lang/rust.vim'
+if has('nvim')
+	Bundle 'parsonsmatt/intero-neovim'
+	Bundle 'neomake/neomake'
+endif
 colorscheme CandyPaper
 set background=dark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
@@ -51,7 +62,9 @@ if v:progname =~? "evim"
 endif
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+if !has('nvim')
+	source $VIMRUNTIME/defaults.vim
+endif
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -88,10 +101,14 @@ if has("autocmd")
 	autocmd FileType python nnoremap ( A)<ESC>I(<ESC>I
 	autocmd FileType python nnoremap ) ea)<ESC>I(<ESC>I
 	autocmd FileType python nnoremap fff :let @f='<C-r><C-w>'<CR>/def <C-r>f(<CR>zt<ESC>
+	autocmd FileType python nnoremap <Leader>tt :w<CR>:call Pytest()<CR>
 	autocmd FileType haskell set shiftwidth=2
 	autocmd FileType haskell set expandtab
 	autocmd FileType htmldjango set shiftwidth=2
 	autocmd FileType htmldjango set expandtab
+	autocmd FileType capnp set shiftwidth=4
+	autocmd FileType capnp set tabstop=4
+	autocmd FileType capnp set expandtab
   augroup END
 
   autocmd CursorHold,VimResized,FocusLost * redraw!
@@ -106,7 +123,7 @@ endif " has("autocmd")
 "
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
-if has('syntax') && has('eval')
+if has('syntax') && has('eval') && !has('nvim')
   packadd matchit
 endif
 
@@ -126,6 +143,10 @@ endif
             autocmd BufWinEnter * call ResCur()
         augroup END
 
+function! Pytest()
+	let x = "crane/crane dev:mm tests.unittests:" . fnamemodify(expand("%"), ":~:.")
+	exec "!" . x
+endfunction
 set backspace=indent,eol,start  " Backspace for dummies
 set relativenumber                      " Line numbers on
 highlight LineNr ctermfg=grey
@@ -214,6 +235,8 @@ map <silent> ,e <Plug>CamelCaseMotion_e
 omap <silent> i,w <Plug>CamelCaseMotion_iw
 xmap <silent> i,w <Plug>CamelCaseMotion_iw
 set diffopt=vertical
-set ttymouse=sgr
+if !has('nvim')
+	set ttymouse=sgr
+endif
 set mouse=nicr
 set tildeop
