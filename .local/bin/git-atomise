@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -e
+
+git tracked-clean
+
+CURRENT_COMMIT=$(git rev-parse --short @)
+COMMIT_TO_ATOMISE=$(git rev-parse --short $1)
+PARENT_OF_ATOMISED=$(git rev-parse --short "$1^")
+
+# Checkout CTA (commit to atomise)
+git reset "$COMMIT_TO_ATOMISE" --hard
+# Checkout parent and unstage all changes in CTA (--mixed)
+git reset "$PARENT_OF_ATOMISED" --mixed
+
+# quotePath escapes file paths with special characters. We don't want this.
+ATOMISE_DIFF=$(git -c "core.quotePath=false" show  --name-status "$COMMIT_TO_ATOMISE")
+
+# Deletions
+for f in $(echo "$ATOMISE_DIFF" | sed -n 's/^D\t//p')
+do
+  git checkout @ -- "$f"
+  git rm "$f"
+  git commit -m "DELETE $f"
+done
+
+# Additions
+for f in $(echo "$ATOMISE_DIFF" | sed -n 's/^A\t//p')
+do
+  git add "$f"
+  git commit -m "ADD $f"
+done
+
+# Modifications
+for f in $(echo "$ATOMISE_DIFF" | sed -n 's/^M[0-9]*\t//p')
+do
+  git add "$f"
+  git commit -m "MODIFY $f"
+done
+
+# Renames
+RENAMES=$(echo "$ATOMISE_DIFF" | sed -n 's/^R[0-9]*\t//p')
+for f in "$RENAMES"
+do
+  IFS="	" read -ra RENAME <<< "$f"
+  mv "${RENAME[1]}" "${RENAME[0]}"
+  git mv "${RENAME[0]}" "${RENAME[1]}"
+  git add "${RENAME[1]}"
+  git commit -m "MOVE ${RENAME[0]} -> ${RENAME[1]}"
+done
+
+# Print anything which wasn't add, remove, modify or rename
+git diff --name-status
+
+ATOMISED=$(git rev-parse --short @)
+git reset "$CURRENT_COMMIT" --hard
+git rebase "$ATOMISED"
