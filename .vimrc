@@ -38,13 +38,10 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'Shougo/vimproc'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'bonnefoa/vim-capnp'
 Bundle 'gabrielelana/vim-markdown'
 Bundle 'rust-lang/rust.vim'
-if has('nvim')
-	Bundle 'parsonsmatt/intero-neovim'
-	Bundle 'neomake/neomake'
-endif
+Bundle 'godlygeek/tabular'
+Bundle 'maksimr/vim-jsbeautify'
 colorscheme CandyPaper
 set background=dark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
@@ -53,6 +50,7 @@ set laststatus=2
 map <F2> :NERDTreeToggle<CR>
 "Plugins
 filetype plugin indent on
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 syntax on
 set history=1000
@@ -143,10 +141,7 @@ endif
             autocmd BufWinEnter * call ResCur()
         augroup END
 
-function! Pytest()
-	let x = "crane/crane dev:mm tests.unittests:" . fnamemodify(expand("%"), ":~:.")
-	exec "!" . x
-endfunction
+let g:markdown_fenced_languages = ['html', 'python', 'js=javascript', 'bash=sh']
 set backspace=indent,eol,start  " Backspace for dummies
 set relativenumber                      " Line numbers on
 highlight LineNr ctermfg=grey
@@ -214,7 +209,7 @@ nnoremap * #
 " replace motion with paste
 function! ReplaceWithPaste(type)
    let @"=@*
-   silent execute 'normal! `[v`]d"0p'
+   silent execute 'normal! `[v`]d"0P'
 endfunction
 nnoremap sp :set opfunc=ReplaceWithPaste<CR>g@
 " replace the.big.dog attribute with the['big'].dog index when cursor over dot after the

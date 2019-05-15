@@ -126,3 +126,5 @@ compdef _crane crn
 compdef _crane crnd
 setopt complete_aliases
 fpath=(~/.zsh-functions $fpath)
+
+setopt HIST_IGNORE_SPACE
