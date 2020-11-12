@@ -30,14 +30,15 @@
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     # Prints "graphical", not-that-compact history of current branch
     ll = log --graph --format=medium
-    lme = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --author="caller" --first-parent master
+    lme = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --author="caller" --first-parent
     ln = !git --no-pager long -n
     ds = diff --staged
     dss = diff --staged --stat
     dif = diff
     co = checkout
-    cm = "!git checkout master && git fetch --prune && git --no-pager lg ..origin/master && echo '' && git pull"
-    cmr = "!BRNM=$(git branch-name)&& git cm && git co $BRNM && git rebase master"
+    #cm = "!git checkout master && git fetch --prune && git --no-pager lg ..origin/master && echo '' && git pull"
+    cm = !sh -c 'MAIN_BRNM=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git checkout $MAIN_BRNM && git fetch --prune && git --no-pager lg "..origin/$MAIN_BRNM" && echo "" && git pull'
+    cmr = "!BRNM=$(git branch-name) MAIN_BRNM=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git cm && git co $BRNM && git rebase $MAIN_BRNM"
     su = submodule update
     sui = submodule update --init
     who = log --pretty=format:'%C(bold blue)  %an %Creset%Cgreen(%cd)%Creset %C(white ul)%s%Creset' --date=format:'%a %x %H:%M' --follow
@@ -50,7 +51,7 @@
     pbmaster = "!git push origin $(git branch-name):master"
 
     end = rebase --continue
-    rii = rebase -i master
+    rii = !sh -c 'MAIN_BRNM=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git rebase -i $MAIN_BRNM'
     fuck = rebase --abort
     rw = reword
 

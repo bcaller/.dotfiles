@@ -107,6 +107,9 @@ if has("autocmd")
 	autocmd FileType capnp set shiftwidth=4
 	autocmd FileType capnp set tabstop=4
 	autocmd FileType capnp set expandtab
+	autocmd FileType javascript set shiftwidth=2
+	autocmd FileType javascript set tabstop=2
+	autocmd FileType javascript set expandtab
   augroup END
 
   autocmd CursorHold,VimResized,FocusLost * redraw!
